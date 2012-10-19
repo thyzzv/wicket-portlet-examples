@@ -14,32 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.wicket.portlet.examples.guestbook;
+package org.apache.wicket.portlet.examples.compref;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.portlet.examples.WicketPortletExampleApplication;
+import org.apache.wicket.markup.html.border.Border;
 
 /**
- * Guest book application.
+ * A sample panel component.
  * 
- * @author Jonathan Locke
+ * @author Eelco Hillenius
  */
-public class GuestBookApplication extends WicketPortletExampleApplication
+class MyBorder extends Border
 {
 	/**
-	 * Constructor
+	 * Construct.
+	 * 
+	 * @param id
+	 *            component id
 	 */
-	public GuestBookApplication()
+	public MyBorder(String id)
 	{
-
-	}
-
-	/**
-	 * @see org.apache.wicket.Application#getHomePage()
-	 */
-	@Override
-	public Class< ? extends Page> getHomePage()
-	{
-		return GuestBook.class;
+		super(id);
 	}
 }

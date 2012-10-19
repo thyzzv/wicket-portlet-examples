@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>ajax</portlet-name>
+		<portlet-name>examples</portlet-name>
 		<render-weight>1</render-weight>
 		<ajaxable>true</ajaxable>
 	</portlet>

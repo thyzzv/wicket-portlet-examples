@@ -17,12 +17,15 @@
 package org.apache.wicket.portlet.examples;
 
 import org.apache.wicket.devutils.debugbar.DebugBar;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.PopupSettings;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.portlet.examples.source.SourcesPage;
+import org.apache.wicket.request.resource.CssResourceReference;
 
 /**
  * Navigation panel for the examples project.
@@ -41,6 +44,15 @@ public final class WicketPortletExampleHeader extends Panel
 	 * @param page
 	 *            The example page
 	 */
+  
+  static CssResourceReference css = new CssResourceReference(HomePage.class, "style.css");
+  @Override
+  public void renderHead(IHeaderResponse response)
+  {
+    response.render(CssHeaderItem.forReference(css));
+   
+  }
+  
 	public WicketPortletExampleHeader(String id, String exampleTitle, WebPage page)
 	{
 		super(id);
@@ -55,5 +67,8 @@ public final class WicketPortletExampleHeader extends Panel
 		settings.setWidth(800);
 		settings.setHeight(600);
 		link.setPopupSettings(settings);
+		BookmarkablePageLink<Void> home = new BookmarkablePageLink<Void>("home",
+	      HomePage.class);
+		add(home);
 	}
 }

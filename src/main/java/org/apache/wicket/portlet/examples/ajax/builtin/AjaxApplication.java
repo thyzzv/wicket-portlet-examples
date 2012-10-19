@@ -38,7 +38,7 @@ public class AjaxApplication extends WicketPortletExampleApplication
 	}
 
 	/**
-	 * @see org.apache.wicket.examples.WicketExampleApplication#init()
+	 * @see org.apache.wicket.portlet.examples.WicketExampleApplication#init()
 	 */
 	@Override
 	protected void init()

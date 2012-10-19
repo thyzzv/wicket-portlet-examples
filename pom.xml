@@ -52,7 +52,7 @@
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-portlet</artifactId>
-			<version>${wicket.version}</version>
+			<version>1.5.7.2</version>
 		</dependency>
 
 		<!-- PORTLET DEPENDENCIES -->
@@ -137,7 +137,7 @@
 	</build>
 
 	<properties>
-		<wicket.version>6.1.1</wicket.version>
+		<wicket.version>1.5.7</wicket.version>
 		<jetty.version>6.1.4</jetty.version>
 		<pluto.version>2.0.0-SNAPSHOT</pluto.version>
 	</properties>

@@ -16,14 +16,10 @@
  */
 package org.apache.wicket.portlet.examples.ajax.builtin;
 
-import java.util.List;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.attributes.AjaxCallListener;
-import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
-import org.apache.wicket.ajax.attributes.IAjaxCallListener;
+import org.apache.wicket.ajax.calldecorator.AjaxCallDecorator;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.extensions.ajax.markup.html.IndicatingAjaxLink;
@@ -138,34 +134,28 @@ public class LinksPage extends BasePage
 			}
 
 			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+			protected org.apache.wicket.ajax.IAjaxCallDecorator getAjaxCallDecorator()
 			{
-				super.updateAjaxAttributes(attributes);
-
-				IAjaxCallListener ajaxCallListener = new AjaxCallListener() {
+				return new AjaxCallDecorator()
+				{
 					@Override
-					public CharSequence getSuccessHandler(Component component)
+					public CharSequence decorateOnSuccessScript(Component c, CharSequence script)
 					{
 						return "alert('Success');";
 					}
 
 					@Override
-					public CharSequence getBeforeSendHandler(Component component)
-					{
-						return "alert('Before ajax call');";
-					}
-
-					@Override
-					public CharSequence getFailureHandler(Component component)
+					public CharSequence decorateOnFailureScript(Component c, CharSequence script)
 					{
 						return "alert('Failure');";
 					}
-				};
-				attributes.getAjaxCallListeners().add(ajaxCallListener);
 
-				List<CharSequence> urlArgumentMethods = attributes.getDynamicExtraParameters();
-				urlArgumentMethods.add("return {'htmlname': document.documentElement.tagName};");
-				urlArgumentMethods.add("return {'bodyname': document.body.tagName};");
+					@Override
+					public CharSequence decorateScript(Component c, CharSequence script)
+					{
+						return "alert('Before ajax call');" + script;
+					}
+				};
 			}
 		});
 
@@ -184,30 +174,28 @@ public class LinksPage extends BasePage
 			}
 
 			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
+			protected org.apache.wicket.ajax.IAjaxCallDecorator getAjaxCallDecorator()
 			{
-				super.updateAjaxAttributes(attributes);
-				
-				IAjaxCallListener ajaxCallListener = new AjaxCallListener() {
+				return new AjaxCallDecorator()
+				{
 					@Override
-					public CharSequence getBeforeHandler(Component component)
-					{
-						return "alert('Before ajax call');";
-					}
-
-					@Override
-					public CharSequence getSuccessHandler(Component component)
+					public CharSequence decorateOnSuccessScript(Component c, CharSequence script)
 					{
 						return "alert('Success');";
 					}
 
 					@Override
-					public CharSequence getFailureHandler(Component component)
+					public CharSequence decorateOnFailureScript(Component c, CharSequence script)
 					{
 						return "alert('Failure');";
 					}
+
+					@Override
+					public CharSequence decorateScript(Component c, CharSequence script)
+					{
+						return "alert('Before ajax call');" + script;
+					}
 				};
-				attributes.getAjaxCallListeners().add(ajaxCallListener);
 			}
 		});
 

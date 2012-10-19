@@ -39,14 +39,14 @@ public class EditablePanel extends Panel
 	 * @param inputModel
 	 *            Model of the text field
 	 */
-	public EditablePanel(String id, IModel<?> inputModel)
+	public EditablePanel(String id, IModel inputModel)
 	{
 		super(id);
 
-		TextField<?> field = new TextField("textfield", inputModel);
+		TextField field = new TextField("textfield", inputModel);
 		add(field);
 
-		field.add(new AjaxFormComponentUpdatingBehavior("blur")
+		field.add(new AjaxFormComponentUpdatingBehavior("onblur")
 		{
 			@Override
 			protected void onUpdate(AjaxRequestTarget target)

@@ -28,6 +28,9 @@ import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteTe
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.handler.BookmarkablePageRequestHandler;
+import org.apache.wicket.request.handler.PageProvider;
 import org.apache.wicket.util.string.Strings;
 
 
@@ -85,11 +88,15 @@ public class AutoCompletePage extends BasePage
 		label.setOutputMarkupId(true);
 		form.add(label);
 
-		field.add(new AjaxFormSubmitBehavior(form, "change")
+		field.add(new AjaxFormSubmitBehavior(form, "onchange")
 		{
 			@Override
 			protected void onSubmit(AjaxRequestTarget target)
 			{
+				BookmarkablePageRequestHandler bookmarkablePageRequestHandler = new BookmarkablePageRequestHandler(
+					new PageProvider(Index.class));
+				RequestCycle requestCycle = RequestCycle.get();
+				CharSequence urlFor = requestCycle.urlFor(bookmarkablePageRequestHandler);
 				target.add(label);
 			}
 

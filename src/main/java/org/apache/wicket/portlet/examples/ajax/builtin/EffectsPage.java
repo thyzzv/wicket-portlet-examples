@@ -16,14 +16,9 @@
  */
 package org.apache.wicket.portlet.examples.ajax.builtin;
 
-import org.apache.wicket.ajax.AjaxChannel;
-import org.apache.wicket.ajax.AjaxChannel.Type;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
 
@@ -91,14 +86,6 @@ public class EffectsPage extends BasePage
 				target.add(c1);
 				target.appendJavaScript("new Effect.Shake($('" + c1.getMarkupId() + "'));");
 			}
-
-			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
-			{
-				attributes.setChannel(new AjaxChannel("effects", Type.DROP));
-
-				super.updateAjaxAttributes(attributes);
-			}
 		});
 
 		add(new AjaxFallbackLink<Void>("c2-link")
@@ -114,22 +101,6 @@ public class EffectsPage extends BasePage
 				}
 			}
 
-			@Override
-			protected void updateAjaxAttributes(AjaxRequestAttributes attributes)
-			{
-				attributes.setChannel(new AjaxChannel("effects", Type.DROP));
-
-				super.updateAjaxAttributes(attributes);
-			}
 		});
 	}
-
-	@Override
-	public void renderHead(IHeaderResponse response)
-	{
-		super.renderHead(response);
-
-		response.render(OnDomReadyHeaderItem.forScript("jQuery.noConflict();"));
-	}
-
 }

@@ -16,6 +16,7 @@
  */
 package org.apache.wicket.portlet.examples.ajax.builtin;
 
+import org.apache.wicket.IClusterable;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormValidatingBehavior;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -26,7 +27,6 @@ import org.apache.wicket.markup.html.form.SimpleFormComponentLabel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
-import org.apache.wicket.util.io.IClusterable;
 import org.apache.wicket.util.time.Duration;
 import org.apache.wicket.validation.validator.EmailAddressValidator;
 import org.apache.wicket.validation.validator.StringValidator;
@@ -51,7 +51,7 @@ public class FormPage extends BasePage
 		add(feedback);
 
 		// add form with markup id setter so it can be updated via ajax
-		Bean bean = new Bean();
+		Bean bean=new Bean();
 		Form<Bean> form = new Form<Bean>("form", new CompoundPropertyModel<Bean>(bean));
 		add(form);
 		form.setOutputMarkupId(true);
@@ -61,7 +61,7 @@ public class FormPage extends BasePage
 		// add form components to the form as usual
 
 		fc = new RequiredTextField<String>("name");
-		fc.add(new StringValidator(4, null));
+		fc.add(StringValidator.minimumLength(4));
 		fc.setLabel(new ResourceModel("label.name"));
 
 		form.add(fc);
@@ -74,10 +74,10 @@ public class FormPage extends BasePage
 		form.add(fc);
 		form.add(new SimpleFormComponentLabel("email-label", fc));
 
-		// attach an ajax validation behavior to all form component's keydown
+		// attach an ajax validation behavior to all form component's onkeydown
 		// event and throttle it down to once per second
 
-		AjaxFormValidatingBehavior.addToAllFormComponents(form, "keydown", Duration.ONE_SECOND);
+		AjaxFormValidatingBehavior.addToAllFormComponents(form, "onkeyup", Duration.ONE_SECOND);
 
 		// add a button that can be used to submit the form via ajax
 		form.add(new AjaxButton("ajax-button", form)

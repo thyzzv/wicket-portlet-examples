@@ -19,6 +19,7 @@ package org.apache.wicket.portlet.examples.ajax.builtin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.IClusterable;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -31,7 +32,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.util.io.IClusterable;
 
 /**
  * Ajax todo list without having to write any JavaScript yourself.
@@ -215,7 +215,7 @@ public class TodoList extends BasePage
 			}
 
 			/**
-			 * @see AjaxFallbackLink#onClick(org.apache.wicket.ajax.AjaxRequestTarget)
+			 * @see AjaxFallbackLink#onClick(AjaxRequestTarget)
 			 */
 			@Override
 			public void onClick(AjaxRequestTarget target)

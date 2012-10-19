@@ -18,7 +18,7 @@ package org.apache.wicket.portlet.examples.guestbook;
 
 import java.util.Date;
 
-import org.apache.wicket.util.io.IClusterable;
+import org.apache.wicket.IClusterable;
 
 
 /**

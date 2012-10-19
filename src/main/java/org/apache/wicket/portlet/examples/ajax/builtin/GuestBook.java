@@ -22,7 +22,10 @@ import java.util.List;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.ajax.calldecorator.AjaxCallDecorator;
 import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
+import org.apache.wicket.portlet.examples.guestbook.Comment;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
@@ -33,7 +36,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.portlet.examples.guestbook.Comment;
 
 
 /**
@@ -91,8 +93,21 @@ public class GuestBook extends BasePage
 		// we need to do in the onSubmit(AjaxRequestTarget) handler is do our
 		// Ajax
 		// specific stuff, like rendering our components.
-		commentForm.add(new AjaxFormSubmitBehavior(commentForm, "submit")
+		commentForm.add(new AjaxFormSubmitBehavior(commentForm, "onsubmit")
 		{
+			@Override
+			protected IAjaxCallDecorator getAjaxCallDecorator()
+			{
+				return new AjaxCallDecorator()
+				{
+					@Override
+					public CharSequence decorateScript(Component c, CharSequence script)
+					{
+						return script + "return false;";
+					}
+				};
+			}
+
 			@Override
 			protected void onSubmit(AjaxRequestTarget target)
 			{

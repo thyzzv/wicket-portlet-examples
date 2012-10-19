@@ -78,7 +78,6 @@ public class ModalContent1Page extends WebPage
 
 		modal.setPageCreator(new ModalWindow.PageCreator()
 		{
-			@Override
 			public Page createPage()
 			{
 				return new ModalContent2Page(modal);
@@ -87,7 +86,6 @@ public class ModalContent1Page extends WebPage
 
 		modal.setCloseButtonCallback(new ModalWindow.CloseButtonCallback()
 		{
-			@Override
 			public boolean onCloseButtonClicked(AjaxRequestTarget target)
 			{
 				target.appendJavaScript("alert('You can\\'t close this modal window using close button."

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.4"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>wicket-example-portlet</display-name>
+	
+   <context-param>
+		<param-name>org.apache.wicket.detectPortletContext</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>configuration</param-name>
+		<param-value>development</param-value>
+		<!-- param-value>deployment</param-value -->
+	</context-param>
+
+	<filter>
+		<filter-name>ajax</filter-name>
+		<filter-class>org.apache.wicket.portlet.PortletFilter</filter-class>
+		<init-param>
+			<param-name>applicationClassName</param-name>
+			<param-value>org.apache.wicket.portlet.examples.ajax.builtin.AjaxApplication</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ajax</filter-name>
+		<url-pattern>/ajax/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>		
+	</filter-mapping>
+</web-app>

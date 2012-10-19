@@ -5,7 +5,7 @@
 	<groupId>org.apache.wicket</groupId>
 	<artifactId>wicket-example-portlet</artifactId>
 	<packaging>war</packaging>
-	<version>6.1.1</version>
+	<version>1.5-SNAPSHOT</version>
 	<name>Wicket Example Portlet</name>
 	<description></description>
 	<licenses>
@@ -50,9 +50,9 @@
 			<version>${wicket.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-portlet</artifactId>
-			<version>1.5.7.2</version>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>wicketstuff-portlet</artifactId>
+			<version>1.5-SNAPSHOT</version>
 		</dependency>
 
 		<!-- PORTLET DEPENDENCIES -->

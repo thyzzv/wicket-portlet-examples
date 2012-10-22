@@ -104,7 +104,8 @@ public final class GuestBook extends WicketPortletExamplePage
 			ValueMap values = getModelObject();
 
 			// check if the honey pot is filled
-			if (((String)values.get("comment"))!= null || ((String)values.get("comment")).isEmpty())
+			
+			if (values.get("comment")!= null && !((String)values.get("comment")).isEmpty())
 			{
 				error("Caught a spammer!!!");
 				return;
